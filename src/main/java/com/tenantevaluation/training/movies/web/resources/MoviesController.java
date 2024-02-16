@@ -20,16 +20,5 @@ public class MoviesController {
     }
 
 
-/*
-  @PostMapping("/save")
-  @Operation(description = "Save a id")
-  @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "ID saved successfully."), @ApiResponse(responseCode = "400", description = "Exception controller"), @ApiResponse(responseCode = "500", description = "Internal server error encountered.")})
-  //@Secured({AuthoritiesConstants.APPLICANT, AuthoritiesConstants.ADMIN})
-  public ResponseEntity<ApplicationReqDTO> saveUnit(@Valid @RequestBody RegulaDTO reqDto) throws BadRequestAlertException, InvalidPendingApplicationException, InternalServerErrorException {
-    ApplicationReqDTO respDto = _BASE_Service.saveIdDocument(reqDto);
-    return ResponseEntity.ok(respDto);
-  }
-*/
-
 
 }
