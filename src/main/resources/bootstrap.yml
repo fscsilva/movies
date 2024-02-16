@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: service-_BASE_
+  profiles:
+    # The commented value for `active` can be replaced with valid Spring profiles to load.
+    # Otherwise, it will be filled in by maven when building the WAR file
+    # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+    active: #spring.profiles.active#
+  datasource:
+    url: jdbc:mysql://${DB_URL:localhost}/${DB_NAME:tea}?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        show_sql: true
+        format_sql: true
+
+springdoc:
+  api-docs:
+    enabled: ${ENABLE_API_DOCS:true}
+    swagger-ui:
+      enabled: ${ENABLE_SWAGGER_UI:true}
+    path: /api/v1.0.0/movies/v3/api-docs
+server:
+  port: 8082
