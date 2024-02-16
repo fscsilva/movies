@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1.0.0/movies")
+@RequestMapping("/api/movies")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class MoviesController {
-
-
 
 
     @GetMapping("/test")
