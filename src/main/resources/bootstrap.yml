@@ -6,6 +6,9 @@ spring:
     # Otherwise, it will be filled in by maven when building the WAR file
     # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
     active: #spring.profiles.active#
+  cloud:
+    compatibility-verifier:
+      enabled: false
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/${DB_NAME:tenant_test}?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true
     username: ${DB_USER:admin}
