@@ -1,0 +1,27 @@
+springdoc:
+  api-docs:
+    enabled: true
+    swagger-ui:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: health, heapdump, info, prometheus, mappings
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState
+  info:
+    env:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}

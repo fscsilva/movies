@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: movies
+  cloud:
+    compatibility-verifier:
+      enabled: false
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/${DB_NAME:tenant_test}?useUnicode=true&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true
+    username: ${DB_USER:admin}
+    password: ${DB_PASSWORD:admin}
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate.ddl-auto: none
+    hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    generate-ddl: false
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+  security:
+    user:
+      name: ${MOVIES_ADMIN_ROLE_NAME:admin}
+      password: ${MOVIES_ADMIN_ROLE_PASSWORD:admin}
+
+springdoc:
+  api-docs:
+    enabled: ${ENABLE_API_DOCS:true}
+    swagger-ui:
+      enabled: ${ENABLE_SWAGGER_UI:true}
+
+server:
+  port: ${MOVIE_SERVICE_PORT:9998}
+  servlet:
+    context-path: /movies-service
+
+author-service:
+  host: ${AUTHOR_SERVICE_HOST:http://localhost}
+  port: ${USER_SERVICE_PORT:8081}
+  username: ${MOVIES_ADMIN_ROLE_NAME:admin}
+  password: ${MOVIES_ADMIN_ROLE_PASSWORD:admin}
+  getAuthorByIdUrl: ${author-service.host}:${author-service.port}/authors-service/v1/authors/{id}
+  getAuthorByNameUrl: ${author-service.host}:${author-service.port}/authors-service/v1/authors?name={name}&page={page}&size={size}
+
+rest-template:
+  connectTimeout: 120000
+  readTimeout: 300000
+  maximumRetries: 4
+  fixedBackOffPeriod: 30000
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: health, heapdump, info, prometheus, mappings
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState
+  info:
+    env:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
